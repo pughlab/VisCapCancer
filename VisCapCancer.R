@@ -176,9 +176,12 @@ make_matrix_from_cov_files <- function(lane_dir, cov_file_pattern, cov_field, ou
 load_interval_names <- function(interval_list_dir, interval_file_pattern, interval_list_coord_adjust) {
     #Read interval list files and make lookup_table for genome coords and interval names
     lookup <- c()
-    filenames <- list.files(interval_list_dir, full.names=TRUE, pattern=interval_file_pattern, recursive=TRUE)
+    filenames <- list.files(interval_list_dir, full.names=TRUE, pattern=interval_file_pattern, recursive=FALSE)
     for(file in filenames) {
-        tab <- read.table(file, header=FALSE, comment.char = "@", stringsAsFactors=FALSE)
+        tab <- read.table(file, header=FALSE, comment.char = "#", stringsAsFactors=FALSE)
+	       if(ncol(tab) < 4)
+	         {stop("The interval file should have at least 4 columns, chromosome, 
+                                 start, end, and interval name, all tab separated.")}
 		#Support bed files that may not have strand column
 		if(grepl(".bed$", file) && dim(tab)[2] == 4) {
 			tab <- cbind(tab[,1:3], strand=rep(NA, dim(tab)[1]), tab[,4])
