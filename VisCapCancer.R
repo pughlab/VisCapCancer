@@ -842,7 +842,7 @@ run_VisCap_algorithm <- function(mat, ylimits, iqr_multiplier, out_dir.iteration
     # Run segmentation algorithm before iterating on thresholds
     if(call.method == "cbs") {
         #Circular Binary Segmentation
-        seg <- call_segments_using_cbs(nmat[,samples.of.interest,drop=FALSE], out_dir.iteration, threshold.min_exons, cbs.sd.undo, cbs.alpha, sam)
+        seg <- call_segments_using_cbs(nmat[,samples.of.interest,drop=FALSE], out_dir.iteration, threshold.min_exons, cbs.sd.undo, cbs.alpha)
     }
     
     #Iteratively apply log2ratio thresholds by purity
