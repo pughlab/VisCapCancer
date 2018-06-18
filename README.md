@@ -1,7 +1,7 @@
 # VisCapCancer
 Somatic copy-number alteration calling tool for targeted sequencing data.
 
-## Sample command to run VisCapCancer:
+Rscript VisCapCancer.R VisCapCancer.cfg /path/to/normals  /path/to/tumours
 
 ```
 Extensive indstruction on running VisCapCancer is in Wiki.
